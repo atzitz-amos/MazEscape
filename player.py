@@ -1,7 +1,6 @@
 import tkinter
 
 
-
 class Player:
 
     def __init__(self, screen):
@@ -33,15 +32,15 @@ class Player:
         self.screen.master.bind('<KeyRelease-d>',lambda e: self.Rright())
 
     def create_image(self,path):
-        del self.image
         self.image = tkinter.PhotoImage(file=path)
+        self.screen.delete(self._player)
+        self._player = self.screen.create_image(self.x,self.y,image=self.image)
 
     def show(self):
         self.create_image(".\\res\\textures\\player_walk\\player_walk_n_0.png")
-        self._player = self.screen.create_image(self.x - self.size / 2,self.y - self.size / 2, image=self.image)
 
     def update(self):
-        self.screen.coords(self._player,self.x - self.size / 2,self.y - self.size / 2)
+        self.screen.coords(self._player,self.x,self.y)
 
     def _move(self):
         if self._movA:
@@ -57,7 +56,7 @@ class Player:
 
     def foreward(self):
         self._movW = True
-        self.create_image("./res/textures/player_walk/player_walk_n_0.png")
+        self.create_image(".\\res\\textures\\player_walk\\player_walk_n_0.png")
 
     def backward(self):
         self._movS = True
