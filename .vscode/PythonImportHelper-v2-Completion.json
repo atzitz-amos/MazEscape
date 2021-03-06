@@ -39,7 +39,7 @@
         "kind": 6,
         "importPath": "player",
         "description": "player",
-        "peekOfCode": "class Player():\n    def __init__(self, screen):\n        self.screen = screen\n        self.x = self.y = 0\n    def show(self, image=None):\n        self.x = self.screen.width / 2\n        self.y = self.screen.height / 2\n        self.screen.create_oval(self.x,self.y,self.x+20,self.y+20,fill='blue')",
+        "peekOfCode": "class Player:\n    def __init__(self, screen):\n        self.screen = screen\n        self.x = self.screen.width / 2\n        self.y = self.screen.height / 2\n        self._player = None\n        self.size = 40\n        self.image = None\n        self._movW = False\n        self._movS = False",
         "detail": "player",
         "documentation": {}
     },
@@ -48,7 +48,7 @@
         "kind": 6,
         "importPath": "screen",
         "description": "screen",
-        "peekOfCode": "class Screen(tk.Canvas):\n    def __init__(self, master):\n        super().__init__(master=master)\n        master.update()\n        self['width'] = self.width = master.winfo_screenwidth() \n        self['height'] = self.height = master.winfo_screenheight()\n        self['bg'] = \"white\"\n        self.pack_propagate(0)\n        self.pack()\n        self.player = Player(self)",
+        "peekOfCode": "class Screen(tk.Canvas):\n    def __init__(self, master):\n        tk.Canvas.__init__(self,master=master)\n        master.update()\n        self['width'] = self.width = master.winfo_screenwidth() \n        self['height'] = self.height = master.winfo_screenheight()\n        self['bg'] = \"white\"\n        self.focus_get()\n        self.pack_propagate(0)\n        self.pack()",
         "detail": "screen",
         "documentation": {}
     }

@@ -1,3 +1,5 @@
+import tkinter
+
 
 
 class Player:
@@ -10,6 +12,8 @@ class Player:
 
         self._player = None
         self.size = 40
+
+        self.image = None
 
         self._movW = False
         self._movS = False
@@ -28,11 +32,16 @@ class Player:
         self.screen.master.bind('<KeyRelease-a>',lambda e: self.Rleft())
         self.screen.master.bind('<KeyRelease-d>',lambda e: self.Rright())
 
-    def show(self, image=None):
-        self._player = self.screen.create_oval(self.x - self.size / 2,self.y - self.size / 2,self.x + self.size / 2,self.y + self.size / 2,fill='blue')
+    def create_image(self,path):
+        del self.image
+        self.image = tkinter.PhotoImage(file=path)
+
+    def show(self):
+        self.create_image(".\\res\\textures\\player_walk\\player_walk_n_0.png")
+        self._player = self.screen.create_image(self.x - self.size / 2,self.y - self.size / 2, image=self.image)
 
     def update(self):
-        self.screen.coords(self._player,self.x - self.size / 2,self.y - self.size / 2,self.x + self.size / 2,self.y + self.size / 2)
+        self.screen.coords(self._player,self.x - self.size / 2,self.y - self.size / 2)
 
     def _move(self):
         if self._movA:
@@ -48,15 +57,19 @@ class Player:
 
     def foreward(self):
         self._movW = True
+        self.create_image("./res/textures/player_walk/player_walk_n_0.png")
 
     def backward(self):
         self._movS = True
+        self.create_image("./res/textures/player_walk/player_walk_s_0.png")
 
     def left(self):
         self._movA = True
+        self.create_image("./res/textures/player_walk/player_walk_w_0.png")
 
     def right(self):
         self._movD = True
+        self.create_image("./res/textures/player_walk/player_walk_e_0.png")
 
     def Rforeward(self):
         self._movW = False
