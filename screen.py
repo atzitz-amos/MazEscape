@@ -23,7 +23,7 @@ class Screen(tk.Canvas):
         self.generate()
 
     def getSpeed(self):
-        return 2
+        return 3
     
     def generate(self):
         cx,cy = self.width / 2,self.height / 2
