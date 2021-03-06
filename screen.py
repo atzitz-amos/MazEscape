@@ -20,5 +20,13 @@ class Screen(tk.Canvas):
         self.player = Player(self)
         self.player.show()
 
+        self.generate()
+
     def getSpeed(self):
         return 2
+    
+    def generate(self):
+        cx,cy = self.width / 2,self.height / 2
+        self.img = tk.PhotoImage(file='.\\res\\textures\\tiles\\tile_0.png').zoom(10)
+        size = self.img.width()
+        self.create_image(cx - size / 2,cy - size / 2,image=self.img)

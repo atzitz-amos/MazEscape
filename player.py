@@ -50,10 +50,11 @@ class Player:
         elif self._movS:
             self.path = ".\\res\\textures\\player_walk\\player_walk_s_"
         else:
-            pass
+            self.path = None
+            self.create_image(".\\res\\textures\\player_walk\\player")
 
     def show(self):
-        self.create_image(".\\res\\textures\\player_walk\\player_walk_n_1")
+        self.create_image(".\\res\\textures\\player_walk\\player")
 
     def update(self):
         self.screen.coords(self._player,self.x,self.y)
