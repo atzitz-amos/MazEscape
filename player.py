@@ -39,6 +39,19 @@ class Player:
         self.screen.delete(self._player)
         self._player = self.screen.create_image(self.x,self.y,image=self.image)
 
+    def release(self):
+        print('release')
+        if self._movW:
+            self.path = ".\\res\\textures\\player_walk\\player_walk_n_"
+        elif self._movA:
+            self.path=".\\res\\textures\\player_walk\\player_walk_w_"
+        elif self._movD:
+            self.path=".\\res\\textures\\player_walk\\player_walk_e_"
+        elif self._movS:
+            self.path = ".\\res\\textures\\player_walk\\player_walk_s_"
+        else:
+            pass
+
     def show(self):
         self.create_image(".\\res\\textures\\player_walk\\player_walk_n_1")
 
@@ -80,12 +93,16 @@ class Player:
 
     def Rforeward(self):
         self._movW = False
+        self.release()
 
     def Rbackward(self):
         self._movS = False
+        self.release()
 
     def Rleft(self):
         self._movA = False
+        self.release()
 
     def Rright(self):
         self._movD = False
+        self.release()

@@ -39,7 +39,7 @@
         "kind": 6,
         "importPath": "player",
         "description": "player",
-        "peekOfCode": "class Player:\n    def __init__(self, screen):\n        self.screen = screen\n        self.x = self.screen.width / 2\n        self.y = self.screen.height / 2\n        self._player = None\n        self.size = 40\n        self.image = None\n        self._movW = False\n        self._movS = False",
+        "peekOfCode": "class Player:\n    def __init__(self, screen):\n        self.screen = screen\n        self.x = self.screen.width / 2\n        self.y = self.screen.height / 2\n        self._player = None\n        self.size = 40\n        self.image = None\n        self.oldpath = None\n        self.path = None",
         "detail": "player",
         "documentation": {}
     },
