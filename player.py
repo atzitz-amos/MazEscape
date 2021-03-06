@@ -10,12 +10,14 @@ class Player:
         self.y = self.screen.height / 2
 
         self._player = None
-        self.size = 40
+        self.size = 64
 
         self.image = None
         self.oldpath = None
         self.path = None
         self.mode = 0
+
+        self.canNotMove = None
 
         self._movW = False
         self._movS = False
@@ -65,14 +67,19 @@ class Player:
             if self.mode == 12:
                 self.mode = 0
             self.mode += 1
-        if self._movA:
+        if self._movA and self.canNotMove != 1:
             self.x -= self.screen.getSpeed()
-        elif self._movD:
+        elif self._movD and self.canNotMove != 3:
             self.x += self.screen.getSpeed()
-        if self._movW:
+        if self._movW and self.canNotMove != 0:
             self.y -= self.screen.getSpeed()
-        elif self._movS:
+        elif self._movS and self.canNotMove != 2:
             self.y += self.screen.getSpeed()
+        d,i = self.screen.tiles[0].isInWall(self.screen.bbox(self._player))
+        if d:
+            self.canNotMove = i
+        else:
+            self.canNotMove = None
         self.update()
         self.screen.after(50,self._move)
 
