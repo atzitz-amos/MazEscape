@@ -1,0 +1,55 @@
+[
+    {
+        "label": "tkinter",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "screen",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "screen",
+        "description": "screen",
+        "detail": "screen",
+        "documentation": {}
+    },
+    {
+        "label": "Player",
+        "importPath": "player",
+        "description": "player",
+        "isExtraImport": true,
+        "detail": "player",
+        "documentation": {}
+    },
+    {
+        "label": "Window",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Window(tk.Tk):\n    def __init__(self):\n        super().__init__()\n        self.screen = screen.Screen(self)\n        self.attributes('-fullscreen',1)\n        self.title(\"MazEscape\")\nif __name__ == '__main__':\n    w = Window()\n    w.mainloop()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Player",
+        "kind": 6,
+        "importPath": "player",
+        "description": "player",
+        "peekOfCode": "class Player():\n    def __init__(self, screen):\n        self.screen = screen\n        self.x = self.y = 0\n    def show(self, image=None):\n        self.x = self.screen.width / 2\n        self.y = self.screen.height / 2\n        self.screen.create_oval(self.x,self.y,self.x+20,self.y+20,fill='blue')",
+        "detail": "player",
+        "documentation": {}
+    },
+    {
+        "label": "Screen",
+        "kind": 6,
+        "importPath": "screen",
+        "description": "screen",
+        "peekOfCode": "class Screen(tk.Canvas):\n    def __init__(self, master):\n        super().__init__(master=master)\n        master.update()\n        self['width'] = self.width = master.winfo_screenwidth() \n        self['height'] = self.height = master.winfo_screenheight()\n        self['bg'] = \"white\"\n        self.pack_propagate(0)\n        self.pack()\n        self.player = Player(self)",
+        "detail": "screen",
+        "documentation": {}
+    }
+]
