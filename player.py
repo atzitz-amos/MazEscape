@@ -13,6 +13,9 @@ class Player:
         self.size = 40
 
         self.image = None
+        self.oldpath = None
+        self.path = None
+        self.mode = 0
 
         self._movW = False
         self._movS = False
@@ -32,17 +35,22 @@ class Player:
         self.screen.master.bind('<KeyRelease-d>',lambda e: self.Rright())
 
     def create_image(self,path):
-        self.image = tkinter.PhotoImage(file=path)
+        self.image = tkinter.PhotoImage(file=path + ".png").zoom(2)
         self.screen.delete(self._player)
         self._player = self.screen.create_image(self.x,self.y,image=self.image)
 
     def show(self):
-        self.create_image(".\\res\\textures\\player_walk\\player_walk_n_0.png")
+        self.create_image(".\\res\\textures\\player_walk\\player_walk_n_1")
 
     def update(self):
         self.screen.coords(self._player,self.x,self.y)
 
     def _move(self):
+        if self.path and (self._movA or self._movD or self._movS or self._movW):
+            self.create_image(self.path + ("0" if self.mode <= 6 else "1"))
+            if self.mode == 12:
+                self.mode = 0
+            self.mode += 1
         if self._movA:
             self.x -= self.screen.getSpeed()
         elif self._movD:
@@ -56,19 +64,19 @@ class Player:
 
     def foreward(self):
         self._movW = True
-        self.create_image(".\\res\\textures\\player_walk\\player_walk_n_0.png")
+        self.path = ".\\res\\textures\\player_walk\\player_walk_n_"
 
     def backward(self):
         self._movS = True
-        self.create_image("./res/textures/player_walk/player_walk_s_0.png")
+        self.path = "res/textures/player_walk/player_walk_s_"
 
     def left(self):
         self._movA = True
-        self.create_image("./res/textures/player_walk/player_walk_w_0.png")
+        self.path = "./res/textures/player_walk/player_walk_w_"
 
     def right(self):
         self._movD = True
-        self.create_image("./res/textures/player_walk/player_walk_e_0.png")
+        self.path = "res/textures/player_walk/player_walk_e_"
 
     def Rforeward(self):
         self._movW = False
