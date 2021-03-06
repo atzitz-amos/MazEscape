@@ -13,7 +13,7 @@ class Player:
         self.size = 64
 
         self.image = None
-        self.oldpath = None
+        self.idle_path = None
         self.path = None
         self.mode = 0
 
@@ -42,21 +42,24 @@ class Player:
         self._player = self.screen.create_image(self.x,self.y,image=self.image)
 
     def release(self):
-        print('release')
         if self._movW:
             self.path = ".\\res\\textures\\player_walk\\player_walk_n_"
+            self.idle_path = ".\\res\\textures\\player_idle\\player_idle_n"
         elif self._movA:
-            self.path=".\\res\\textures\\player_walk\\player_walk_w_"
+            self.path = ".\\res\\textures\\player_walk\\player_walk_w_"
+            self.idle_path = ".\\res\\textures\\player_idle\\player_idle_w"
         elif self._movD:
-            self.path=".\\res\\textures\\player_walk\\player_walk_e_"
+            self.path = ".\\res\\\\textures\\player_walk\\player_walk_e_"
+            self.idle_path = ".\\\\res\\textures\\player_idle\\player_idle_e"
         elif self._movS:
             self.path = ".\\res\\textures\\player_walk\\player_walk_s_"
+            self.idle_path = ".\\res\\textures\\player_idle\\player_idle_s"
         else:
             self.path = None
-            self.create_image(".\\res\\textures\\player_walk\\player")
+            self.create_image(self.idle_path)
 
     def show(self):
-        self.create_image(".\\res\\textures\\player_walk\\player")
+        self.create_image(".\\res\\textures\\player_idle\\player_idle_n")
 
     def update(self):
         self.screen.coords(self._player,self.x,self.y)
@@ -86,18 +89,22 @@ class Player:
     def foreward(self):
         self._movW = True
         self.path = ".\\res\\textures\\player_walk\\player_walk_n_"
+        self.idle_path = "res\\textures/player_idle/player_idle_n"
 
     def backward(self):
         self._movS = True
-        self.path = "res/textures/player_walk/player_walk_s_"
+        self.path = "res\\textures/player_walk/player_walk_s_"
+        self.idle_path = "res/textures/player_idle/player_idle_s"
 
     def left(self):
         self._movA = True
-        self.path = "./res/textures/player_walk/player_walk_w_"
+        self.path = "./res\\textures/player_walk/player_walk_w_"
+        self.idle_path = "res/textures/player_idle/player_idle_w"
 
     def right(self):
         self._movD = True
-        self.path = "res/textures/player_walk/player_walk_e_"
+        self.path = "res\\textures/player_walk/player_walk_e_"
+        self.idle_path = "res/textures/player_idle/player_idle_e"
 
     def Rforeward(self):
         self._movW = False
