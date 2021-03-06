@@ -9,14 +9,14 @@ class Player:
         self.y = self.screen.height / 2
 
         self._player = None
-        self.size = 20
+        self.size = 40
 
         self._movW = False
         self._movS = False
         self._movA = False
         self._movD = False
 
-        self.screen.after(10,self._move)
+        self.screen.after(15,self._move)
 
         self.screen.master.bind('<KeyPress-w>',lambda e: self.foreward())
         self.screen.master.bind('<KeyPress-s>',lambda e: self.backward())
